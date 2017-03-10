@@ -1,0 +1,7 @@
+#通过此格式，可以判断出过滤了哪些一级连接语法，此情景下只能测试or、and、having、like等连接
+' keyword '1'='1
+#通过此格式，可以判断出过滤了哪些特定字符，如column_name或information_schema.columns，前提是or可用
+' or 'keyword'=keyword
+' and 'keyword'=keyword
+' having 'keyword'=keyword
+' like 'keyword'=keyword

