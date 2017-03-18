@@ -7,7 +7,7 @@ from urllib import quote
 import time
 
 #探测是否对ID进行了() , “”格式重置
-url='http://localhost/sqli-labs/Less-13/' #lesson 11
+url='http://localhost/sqli-labs/Less-14/' #lesson 11
 #当返回结果为文字时使用结果字符串
 #keyword='Login name:'
 #当返回结果为图片文件时，keyword推荐使用图片文件名
@@ -15,7 +15,7 @@ keyword='flag.jpg'
 #keyword需要根据各个标的回显格式不同更改
 payload_end='-- #/*'
 password='*/-- #'
-filename="D:/workplaceforpy/SQL Injection/POST注入/dict/过滤/基础过滤规则.txt"
+filename="D:/workplaceforpy/SQL Injection/sqlinjection/POST注入/dict/过滤/基础过滤规则.txt"
 uipath = unicode(filename, "utf8")
 for line in open(uipath):
     line=line.replace("\n","")

